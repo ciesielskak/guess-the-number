@@ -23,6 +23,7 @@ document.querySelector(".check").addEventListener("click", () => {
     if (score <= 0) {
       document.querySelector(".message").textContent = "Game over! 😑";
       document.querySelector(".score").textContent = 0;
+      document.querySelector(".check").disabled = true;
     }
   }
 });
