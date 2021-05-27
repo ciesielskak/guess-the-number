@@ -1,13 +1,13 @@
 "use strict";
 let number = Math.trunc(Math.random() * 20) + 1;
 let score = 20;
-
-
+let highScore = 0;
 console.log(number);
 
 document.querySelector(".check").addEventListener("click", () => {
-    const guessValue = Number(document.querySelector("input").value);
-  console.log(score);
+  const guessValue = Number(document.querySelector("input").value);
+  
+
   if (!guessValue) {
     document.querySelector(".message").textContent = "Not a number!";
   } else if (guessValue === number) {
@@ -15,6 +15,11 @@ document.querySelector(".check").addEventListener("click", () => {
     document.querySelector(".number").textContent = guessValue;
     document.querySelector("body").style.background = "#60b347";
     document.querySelector(".check").disabled = true;
+    if (score > highScore) {
+        highScore = score;
+        document.querySelector('.highscore').textContent = highScore;
+    }
+   
   } else if (guessValue !== number) {
     score--;
     document.querySelector(".score").textContent = score;
@@ -31,10 +36,11 @@ document.querySelector(".check").addEventListener("click", () => {
 document.querySelector(".again").addEventListener("click", () => {
   score = 20;
   number = Math.trunc(Math.random() * 20) + 1;
+  console.log(`scond number ${number}`)
   document.querySelector(".score").textContent = score;
   document.querySelector(".check").disabled = false;
   document.querySelector("body").style.background = "#222";
   document.querySelector(".number").textContent = "?";
   document.querySelector(".message").textContent = "Start guessing...";
-  document.querySelector("input").value = '';
+  document.querySelector("input").value = "";
 });
